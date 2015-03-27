@@ -1,0 +1,112 @@
+#!/usr/bin/perl -w
+
+# @tutorial Class фукнции для работы с интерфейсом CPA
+# @version 0.2
+# @copyright apiskun 25-27.06.2012
+# @since
+#       0.2.1
+#               Добавлена функция getPlatformErrorDescriptionByCode и getSubscriptionStatusByCode
+#               функции эктив и диэктив возвращают хеш, а не структуру
+#       0.2
+#               Добавлены функции CPAParseResponse, CPAServiceActive, CPAServiceDeactive
+#       0.1.1
+#               Добавление атрибута requestTimeout в CPACheck
+#       0.1
+#               Создание модуля
+#               Создание функции CPACheck
+
+package text.pm;
+
+use strict;
+use LWP::UserAgent;
+use utf8;
+use Encode;
+use Switch;
+
+
+
+# @param String str
+	#	<p>текст, который необходимо преобразовать</p>
+	# @return
+	#	<p>
+	#		undef 	- не удалось преобразовать
+	#		str		- преобразование прошло успешно
+	#	</p>
+	sub translitIt{
+		my ($self,$translit,) = @_;
+		$translit =~ s/ё/yo/g;
+		$translit =~ s/Ё/YO/g;
+		$translit =~ s/ж/zh/g;
+		$translit =~ s/Ж/ZH/g;
+		$translit =~ s/ч/ch/g;
+		$translit =~ s/Ч/CH/g;
+		$translit =~ s/ш/sh/g;
+		$translit =~ s/Ш/SH/g;
+		$translit =~ s/щ/shh/g;
+		$translit =~ s/Щ/SHH/g;
+		$translit =~ s/ъ//ig;
+		$translit =~ s/ы/ii/g;
+		$translit =~ s/Ы/II/g;
+		$translit =~ s/ь//ig;
+		$translit =~ s/э/ie/g;
+		$translit =~ s/Э/IE/g;
+		$translit =~ s/ю/yu/g;
+		$translit =~ s/Ю/YU/g;
+		$translit =~ s/я/ya/g;
+		$translit =~ s/Я/YA/g;
+		
+		my %words = (
+			"А" => "A",
+			"а" => "a",
+			"Б" => "B",
+			"б" => "b",
+			"В" => "V",
+			"в" => "v",
+			"Г" => "G",
+			"г" => "g",
+			"Д" => "D",
+			"д" => "d",
+			"Е" => "E",
+			"е" => "e",
+			"З" => "Z",
+			"з" => "z",
+			"И" => "I",
+			"и" => "i",
+			"Й" => "J",
+			"й" => "j",
+			"К" => "K",
+			"к" => "k",
+			"Л" => "L",
+			"л" => "l",
+			"М" => "M",
+			"м" => "m",
+			"Н" => "N",
+			"н" => "n",
+			"О" => "O",
+			"о" => "o",
+			"П" => "P",
+			"п" => "p",
+			"Р" => "R",
+			"р" => "r",
+			"С" => "S",
+			"с" => "s",
+			"Т" => "T",
+			"т" => "t",
+			"У" => "U",
+			"у" => "u",
+			"Ф" => "F",
+			"ф" => "f",
+			"Х" => "X",
+			"х" => "x",
+			"Ц" => "C",
+			"ц" => "c"
+		);
+
+		foreach my $rusWord (keys %words) {
+			$translit =~ s/$rusWord/$words{$rusWord}/g;
+		}
+
+		return $translit;
+C
+	}рram string response
+#   <p>Строка, которая будет парситься</p>
