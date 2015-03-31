@@ -2,7 +2,7 @@ package xml;
 
 # Библиотека функций для работы с XML
 
-# to_hash			- Конвертирует xml в hash (без учета аттрибутов)
+# to_hash- Конвертирует xml в hash (без учета аттрибутов)
 
 use strict;
 use XML::Hash;
