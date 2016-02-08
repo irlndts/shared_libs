@@ -11,12 +11,6 @@ use strict;
 use JSON::PP;
 use locale;
 
-# Процедура проверки доступа по IP адресу и списку разрешенных IP адресов (с подсетями типа /24, /16 или /8)
-# @param text $json
-#	текст JSON
-# @return HASHREF
-#	значение - при нормальном декодировании
-#	undef - при проблемах декодирования
 sub to_hash {
 	my ($json) = @_;
 	my $h;
@@ -33,20 +27,6 @@ sub to_hash {
 	return($h);
 };
 
-# Преобразует hash в json формат
-# @param Hash $h
-#	<p>набор значений hash</p>
-# @param Smallint $pretty
-#	<p>выводить красиво</p>
-# @param Smallint $utf8convert
-#	<p>конвертировать в хеш</p>
-# @param Ineteger $bignum
-#	<p>использовать bigint</p>
-# @return String JSON
-#	<p>
-#		строка 	- строка, для записи в базу
-#		undef 	- не удалось выполнить преобразование
-#	</p>
 sub from_hash {
 	my ($h, $pretty, $utf8convert, $bignum) = @_;
 
